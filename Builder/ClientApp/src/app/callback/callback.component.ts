@@ -9,29 +9,29 @@ import { environment } from '../../environments/environment';
 })
 export class CallbackComponent {
 
-    code: string;
-    clientId: string;
-    constructor(private route: ActivatedRoute, http: HttpClient) {
+  code: string;
+  clientId: string;
+  constructor(private route: ActivatedRoute, http: HttpClient) {
 
-        this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
 
-            this.clientId = environment.clientId;
-            this.code = params['code'];
+      this.clientId = environment.clientId;
+      this.code = params['code'];
 
 
-            var tokenUrl = "https://www.bungie.net/Platform/App/OAuth/Token/";
+      var tokenUrl = "https://www.bungie.net/Platform/App/OAuth/Token/";
 
-            const httpOptions = {
-                headers: new HttpHeaders({
-                  'Content-Type': 'application/x-www-form-urlencoded'
-                })
-            };
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      };
 
-            var body = "client_id=" + this.clientId + "&grant_type=authorization_code&code=" + this.code;
-            http.post(tokenUrl, body, httpOptions).subscribe(response => {
-              console.log(response);
-            })
+      var body = "client_id=" + this.clientId + "&grant_type=authorization_code&code=" + this.code;
+      http.post(tokenUrl, body, httpOptions).subscribe(response => {
+        console.log(response);
+      })
 
-        });
-    }
+    });
+  }
 }
