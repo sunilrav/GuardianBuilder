@@ -1,3 +1,26 @@
-<div class="example-box" cdkDrag>
-  Drag me around
+<div class="armor-container">
+  <h2>Helmet</h2>
+
+  <div cdkDropList
+       #equipHelmetList="cdkDropList"
+       [cdkDropListData]="equipHelmet"
+       [cdkDropListConnectedTo]="[allHelmetList]"
+       class="armor-item"
+       (cdkDropListDropped)="drop($event)">
+    <div class="armor-box" *ngFor="let item of equipHelmet" cdkDrag>{{item}}</div>
+  </div>
 </div>
+
+<div class="all-container">
+  <h2>All Helmets</h2>
+
+  <div cdkDropList
+       #allHelmetList="cdkDropList"
+       [cdkDropListData]="allHelmet"
+       [cdkDropListConnectedTo]="[equipHelmetList]"
+       class="all-item"
+       (cdkDropListDropped)="drop($event)">
+    <div class="all-box" *ngFor="let item of allHelmet" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
